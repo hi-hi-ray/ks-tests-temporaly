@@ -4,8 +4,10 @@ import bcrypt
 import sqlite3
 import jwt
 from flask import Flask, request, jsonify
+from flask_cors import CORS
 
 api = Flask(__name__)
+CORS(api)
 
 class Book:
     def __init__(self, id: int, title: str, author: str, isbn: str, available: bool = True):
@@ -23,7 +25,7 @@ class User:
         self.role = role
 
 class LibrarySystem:
-    def __init__(self, db_path: str = ":memory:"):
+    def __init__(self, db_path: str = "database.db"):
         self.db_path = db_path
         self.connection = sqlite3.connect(db_path, check_same_thread=False)
         self.setup_database()
@@ -76,14 +78,35 @@ class LibrarySystem:
         if result:
             return Book(*result)
         return None
+    
+    def clear_books(self):
+        cursor = self.connection.cursor()
+        cursor.execute("DELETE FROM books")
+        self.connection.commit()
 
 library = LibrarySystem()
 
 @api.route("/books", methods=["POST"])
 def add_book():
-    data = request.json
-    book = library.add_book(data["title"], data["author"], data["isbn"])
-    return jsonify({"id": book.id, "title": book.title, "author": book.author, "isbn": book.isbn, "available": book.available})
+    data = request.get_json()
+    if not data:
+        return jsonify({"error": "JSON inválido"}), 400
+    
+    title = data.get("title")
+    author = data.get("author")
+    isbn = data.get("isbn")
+    
+    if not title or not author or not isbn:
+        return jsonify({"error": "Campos obrigatórios faltando"}), 400
+
+    book = library.add_book(title, author, isbn)
+    return jsonify({
+        "id": book.id, 
+        "title": book.title, 
+        "author": book.author, 
+        "isbn": book.isbn, 
+        "available": book.available
+    }), 201
 
 @api.route("/books/<isbn>", methods=["GET"])
 def get_book(isbn):
@@ -92,7 +115,13 @@ def get_book(isbn):
         return jsonify({"id": book.id, "title": book.title, "author": book.author, "isbn": book.isbn, "available": book.available})
     return jsonify({"error": "Book not found"}), 404
 
+@api.route("/books", methods=["DELETE"])
+def clear_books():
+    library.clear_books()
+    return jsonify({"message": "All books have been deleted"}), 200
+
+
 if __name__ == "__main__":
-    api.run(debug=True)
+    api.run(debug=True, host="127.0.0.1", port=5000)
 
 __all__ = ["api"]
