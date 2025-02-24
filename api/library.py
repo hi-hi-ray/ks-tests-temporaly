@@ -5,7 +5,7 @@ import sqlite3
 import jwt
 from flask import Flask, request, jsonify
 
-app = Flask(__name__)
+api = Flask(__name__)
 
 class Book:
     def __init__(self, id: int, title: str, author: str, isbn: str, available: bool = True):
@@ -79,13 +79,13 @@ class LibrarySystem:
 
 library = LibrarySystem()
 
-@app.route("/books", methods=["POST"])
+@api.route("/books", methods=["POST"])
 def add_book():
     data = request.json
     book = library.add_book(data["title"], data["author"], data["isbn"])
     return jsonify({"id": book.id, "title": book.title, "author": book.author, "isbn": book.isbn, "available": book.available})
 
-@app.route("/books/<isbn>", methods=["GET"])
+@api.route("/books/<isbn>", methods=["GET"])
 def get_book(isbn):
     book = library.get_book(isbn)
     if book:
@@ -93,4 +93,6 @@ def get_book(isbn):
     return jsonify({"error": "Book not found"}), 404
 
 if __name__ == "__main__":
-    app.run(debug=True)
+    api.run(debug=True)
+
+__all__ = ["api"]
