@@ -231,7 +231,7 @@ Garantem que o software atende aos requisitos do usuário.
 4. Executar com stakeholders.
 5. Validar fluxos completos de uso.
 
-### Component Tests (Testes de Componentes)
+### **Component Tests (Testes de Componentes)**
 Verificam o funcionamento isolado de componentes individuais da interface.
 
 #### Onde usar:
