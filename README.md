@@ -230,3 +230,26 @@ Garantem que o software atende aos requisitos do usuário.
 3. Garantir conformidade com requisitos.
 4. Executar com stakeholders.
 5. Validar fluxos completos de uso.
+
+### Component Tests (Testes de Componentes)
+Verificam o funcionamento isolado de componentes individuais da interface.
+
+#### Onde usar:
+- Durante o desenvolvimento de componentes reutilizáveis.
+- Em bibliotecas de design system.
+- Ao implementar novas funcionalidades ou refatorar componentes.
+- Para garantir que as mudanças não quebrem o comportamento esperado dos componentes.
+
+#### Plano:
+1. Testar Renderização
+2. Testar Comportamento
+3. Testar interações, como cliques, inputs e eventos personalizados.
+4. Testar Estados
+5. Testar Acessibilidade
+6. Testar Estilização:
+
+#### Ferramentas Recomendas:
+
+- Jest: Para testes de unidade e comportamentais.
+- React Testing Library: Para testar interações e acessibilidade.
+- Storybook: Para visualizar e testar componentes em isolamento.
