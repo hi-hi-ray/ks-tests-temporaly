@@ -15,7 +15,7 @@ python -m pip install flask bcrypt jwt
 python test_runner.py
 ```
 
-## Backend
+## Backend & Front-End
 ### **Unit Tests (Testes de Unidade)**  
 Testes automatizados que verificam o funcionamento de unidades individuais do código, como funções ou métodos isolados.  
 
@@ -46,36 +46,6 @@ Verificam se diferentes partes do sistema funcionam corretamente juntas.
 4. Verificar integração com serviços externos.
 5. Identificar falhas na troca de dados.
 
-### **Smoke Tests (Testes de Fumaça)**  
-Verificações rápidas para garantir que as funcionalidades principais estão operacionais.  
-
-#### Onde usar:
-- Após deploy em ambientes de desenvolvimento, staging ou produção.
-- Antes de executar testes mais abrangentes, para garantir que o sistema está estável.
-- Em pipelines de CI/CD para validar builds.
-
-#### Plano:
-1. Verificar inicialização do sistema.
-2. Testar rotas principais da API.
-3. Confirmar carregamento da interface do usuário.
-4. Validar acesso ao banco de dados.
-5. Executar em diferentes ambientes.
-
-### **Acceptance Tests (Testes de Aceitação)**  
-Garantem que o software atende aos requisitos do usuário.  
-
-#### Onde usar:
-- Antes da entrega do produto ao cliente.
-- Em colaboração com stakeholders para validar funcionalidades.
-- Em projetos ágeis, para garantir que as histórias de usuário foram implementadas corretamente.
-
-#### Plano:
-1. Validar funcionalidades principais.
-2. Testar experiência do usuário.
-3. Garantir conformidade com requisitos.
-4. Executar com stakeholders.
-5. Validar fluxos completos de uso.
-
 ### **Load Tests (Testes de Carga)**  
 Avaliam o desempenho do sistema sob carga esperada.  
 
@@ -91,20 +61,20 @@ Avaliam o desempenho do sistema sob carga esperada.
 4. Identificar gargalos.
 5. Ajustar parâmetros para otimização.
 
-### **Stress Tests (Testes de Estresse)**  
-Testam o sistema em condições extremas.  
+### **System Tests (Testes de Sistema)**  
+Avaliam o sistema como um todo, verificando sua conformidade com os requisitos.  
 
 #### Onde usar:
-- Para avaliar a resiliência do sistema em cenários de sobrecarga.
-- Em sistemas críticos que não podem falhar sob pressão.
-- Para identificar pontos de ruptura e melhorar a robustez.
+- Antes da entrega final do produto.
+- Para garantir que todas as funcionalidades estão funcionando conforme o esperado.
+- Em sistemas complexos com múltiplos módulos.
 
 #### Plano:
-1. Aumentar carga progressivamente até o sistema falhar.
-2. Medir comportamento sob uso intenso.
-3. Testar limites de conexões simultâneas.
-4. Monitorar tempo de resposta sob sobrecarga.
-5. Identificar pontos fracos.
+1. Testar todas as funcionalidades.
+2. Validar requisitos funcionais e não funcionais.
+3. Garantir integração correta entre componentes.
+4. Simular cenários de uso reais.
+5. Certificar que o sistema atende aos critérios de aceitação.
 
 ### **Security Tests (Testes de Segurança)**  
 Garantem que o sistema esteja protegido contra vulnerabilidades.  
@@ -121,36 +91,6 @@ Garantem que o sistema esteja protegido contra vulnerabilidades.
 4. Identificar exposição de dados.
 5. Testar segurança de APIs.
 
-### **Regression Tests (Testes de Regressão)**  
-Garantem que novas alterações não quebrem funcionalidades existentes.  
-
-#### Onde usar:
-- Após alterações no código, para garantir que funcionalidades antigas continuam funcionando.
-- Em projetos com atualizações frequentes.
-- Em pipelines de CI/CD para evitar regressões.
-
-#### Plano:
-1. Executar testes automatizados em cada nova versão.
-2. Verificar funcionalidades antigas.
-3. Garantir que correções de bugs não introduzam novos erros.
-4. Testar componentes afetados por mudanças recentes.
-5. Manter um conjunto robusto de testes.
-
-### **Usability Tests (Testes de Usabilidade)**  
-Avaliam a experiência do usuário ao interagir com o sistema.  
-
-#### Onde usar:
-- Durante o design e desenvolvimento de interfaces.
-- Antes de lançamentos para garantir que a aplicação seja intuitiva.
-- Em projetos com foco em experiência do usuário.
-
-#### Plano:
-1. Testar com usuários reais.
-2. Medir facilidade de uso.
-3. Observar dificuldades encontradas.
-4. Coletar feedback.
-5. Melhorar o design com base nos resultados.
-
 ### **Compatibility Tests (Testes de Compatibilidade)**  
 Verificam se o sistema funciona corretamente em diferentes ambientes.  
 
@@ -166,20 +106,52 @@ Verificam se o sistema funciona corretamente em diferentes ambientes.
 4. Garantir funcionamento em diferentes versões.
 5. Testar integrações externas.
 
-### **System Tests (Testes de Sistema)**  
-Avaliam o sistema como um todo, verificando sua conformidade com os requisitos.  
+## Backend 
+
+### **Smoke Tests (Testes de Fumaça)**  
+Verificações rápidas para garantir que as funcionalidades principais estão operacionais.  
 
 #### Onde usar:
-- Antes da entrega final do produto.
-- Para garantir que todas as funcionalidades estão funcionando conforme o esperado.
-- Em sistemas complexos com múltiplos módulos.
+- Após deploy em ambientes de desenvolvimento, staging ou produção.
+- Antes de executar testes mais abrangentes, para garantir que o sistema está estável.
+- Em pipelines de CI/CD para validar builds.
 
 #### Plano:
-1. Testar todas as funcionalidades.
-2. Validar requisitos funcionais e não funcionais.
-3. Garantir integração correta entre componentes.
-4. Simular cenários de uso reais.
-5. Certificar que o sistema atende aos critérios de aceitação.
+1. Verificar inicialização do sistema.
+2. Testar rotas principais da API.
+3. Confirmar carregamento da interface do usuário.
+4. Validar acesso ao banco de dados.
+5. Executar em diferentes ambientes.
+
+### **Stress Tests (Testes de Estresse)**  
+Testam o sistema em condições extremas.  
+
+#### Onde usar:
+- Para avaliar a resiliência do sistema em cenários de sobrecarga.
+- Em sistemas críticos que não podem falhar sob pressão.
+- Para identificar pontos de ruptura e melhorar a robustez.
+
+#### Plano:
+1. Aumentar carga progressivamente até o sistema falhar.
+2. Medir comportamento sob uso intenso.
+3. Testar limites de conexões simultâneas.
+4. Monitorar tempo de resposta sob sobrecarga.
+5. Identificar pontos fracos.
+
+### **Regression Tests (Testes de Regressão)**  
+Garantem que novas alterações não quebrem funcionalidades existentes.  
+
+#### Onde usar:
+- Após alterações no código, para garantir que funcionalidades antigas continuam funcionando.
+- Em projetos com atualizações frequentes.
+- Em pipelines de CI/CD para evitar regressões.
+
+#### Plano:
+1. Executar testes automatizados em cada nova versão.
+2. Verificar funcionalidades antigas.
+3. Garantir que correções de bugs não introduzam novos erros.
+4. Testar componentes afetados por mudanças recentes.
+5. Manter um conjunto robusto de testes.
 
 ### **Scalability Tests (Testes de Escalabilidade)**  
 Verificam a capacidade do sistema de lidar com aumento de demanda.  
@@ -227,3 +199,34 @@ Testes manuais para explorar o sistema e encontrar comportamentos inesperados.
 5. Explorar o sistema fora do fluxo esperado.
 6. Tentar "quebrar" o sistema com entradas inesperadas.
 7. Documentar e reportar.
+
+## Front-End
+### **Usability Tests (Testes de Usabilidade)**  
+Avaliam a experiência do usuário ao interagir com o sistema.  
+
+#### Onde usar:
+- Durante o design e desenvolvimento de interfaces.
+- Antes de lançamentos para garantir que a aplicação seja intuitiva.
+- Em projetos com foco em experiência do usuário.
+
+#### Plano:
+1. Testar com usuários reais.
+2. Medir facilidade de uso.
+3. Observar dificuldades encontradas.
+4. Coletar feedback.
+5. Melhorar o design com base nos resultados.
+
+### **Acceptance Tests (Testes de Aceitação)**  
+Garantem que o software atende aos requisitos do usuário.  
+
+#### Onde usar:
+- Antes da entrega do produto ao cliente.
+- Em colaboração com stakeholders para validar funcionalidades.
+- Em projetos ágeis, para garantir que as histórias de usuário foram implementadas corretamente.
+
+#### Plano:
+1. Validar funcionalidades principais.
+2. Testar experiência do usuário.
+3. Garantir conformidade com requisitos.
+4. Executar com stakeholders.
+5. Validar fluxos completos de uso.
