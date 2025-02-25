@@ -10,11 +10,11 @@ Performance Tests analisam a velocidade, estabilidade e eficiência do sistema. 
 
 import unittest
 from datetime import datetime, timedelta
-from library import app
+from library import api
 
 class TestPerformance(unittest.TestCase):
     def setUp(self):
-        self.app = app.test_client()
+        self.app = api.test_client()
         self.app.testing = True
     
     def test_response_time(self):

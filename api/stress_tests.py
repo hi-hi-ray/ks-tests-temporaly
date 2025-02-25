@@ -36,10 +36,6 @@ def test_concurrent_book_additions():
     
     print(f"Performance: Added 20 books in {execution_time:.2f} seconds")
 
-# Alternative method if you want to install pytest-benchmark
-# To use this, first install: pip install pytest-benchmark
-# Then uncomment this test and comment out the one above
-"""
 @pytest.mark.benchmark
 def test_concurrent_book_additions_with_benchmark(benchmark):
     def add_books():
@@ -53,7 +49,6 @@ def test_concurrent_book_additions_with_benchmark(benchmark):
     
     # This will run the function multiple times and measure performance
     benchmark(add_books)
-"""
 
 if __name__ == '__main__':
     pytest.main()

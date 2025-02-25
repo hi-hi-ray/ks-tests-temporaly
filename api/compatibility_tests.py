@@ -10,11 +10,11 @@ Compatibility Tests verificam se o sistema funciona corretamente em diferentes a
 
 import unittest
 import json
-from library import app
+from library import api
 
 class TestCompatibility(unittest.TestCase):
     def setUp(self):
-        self.app = app.test_client()
+        self.app = api.test_client()
         self.app.testing = True
     
     def test_json_content_type(self):
@@ -24,7 +24,7 @@ class TestCompatibility(unittest.TestCase):
                                     "author": "Test Author", 
                                     "isbn": "COMPAT123"},
                                 headers={"Content-Type": "application/json"})
-        self.assertEqual(response.status_code, 200)
+        self.assertEqual(response.status_code, 201)
     
     def test_accepts_different_json_formats(self):
         # Test that the API can handle different valid JSON formats
@@ -33,7 +33,7 @@ class TestCompatibility(unittest.TestCase):
                                                 "author": "Test Author", 
                                                 "isbn": "FORMAT123"}),
                                 content_type='application/json')
-        self.assertEqual(response.status_code, 200)
+        self.assertEqual(response.status_code, 201)
 
 if __name__ == '__main__':
     unittest.main()
