@@ -1,11 +1,10 @@
 import React from 'react';
 import { render, fireEvent, screen, waitFor } from '@testing-library/react';
-import '@testing-library/jest-dom'; // Matchers personalizados
-import App from '../../App'; // O componente que está testando
+import '@testing-library/jest-dom'; 
+import App from '../../App';
 
 describe('App Integration Test', () => {
   beforeAll(() => {
-    // Mock do alert apenas para este teste
     window.alert = jest.fn();
   });
 

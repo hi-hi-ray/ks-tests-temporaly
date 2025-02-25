@@ -26,7 +26,7 @@ def test_concurrent_book_additions():
                         json={"title": f"Stress Test Book {i}", 
                             "author": "Stress Author", 
                             "isbn": isbn})
-        assert response.status_code == 200
+        assert response.status_code == 201
         
     end_time = time.time()
     execution_time = end_time - start_time
