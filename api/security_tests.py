@@ -9,11 +9,11 @@ Security Tests garantem que o sistema esteja protegido contra vulnerabilidades. 
 """
 
 import unittest
-from library import app
+from library import api
 
 class TestSecurity(unittest.TestCase):
     def setUp(self):
-        self.app = app.test_client()
+        self.app = api.test_client()
         self.app.testing = True
     
     def test_sql_injection_prevention(self):

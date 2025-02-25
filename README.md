@@ -11,7 +11,7 @@ python library.py
 Rodando os testes back:
 ```
 cd api
-python -m pip install pytest flask bcrypt jwt
+python -m pip install pytest flask bcrypt jwt pytest-benchmark flask_cors
 python test_runner.py
 ```
 

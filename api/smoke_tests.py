@@ -10,11 +10,11 @@ Smoke Tests são verificações rápidas para garantir que as funcionalidades pr
 
 
 import unittest
-from library import app
+from library import api
 
 class TestSmoke(unittest.TestCase):
     def setUp(self):
-        self.app = app.test_client()
+        self.app = api.test_client()
         self.app.testing = True
     
     def test_server_running(self):
@@ -28,7 +28,7 @@ class TestSmoke(unittest.TestCase):
                                     json={"title": "Smoke Test Book", 
                                         "author": "Smoke Author", 
                                         "isbn": "1111222233"})
-        self.assertEqual(add_response.status_code, 200)
+        self.assertEqual(add_response.status_code, 201)
         
         # Retrieve the book
         get_response = self.app.get('/books/1111222233')

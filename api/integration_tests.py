@@ -10,11 +10,11 @@ Integration Tests verificam se diferentes partes do sistema funcionam corretamen
 
 import unittest
 import json
-from library import app, library
+from library import api, library
 
 class TestLibraryIntegration(unittest.TestCase):
     def setUp(self):
-        self.app = app.test_client()
+        self.app = api.test_client()
         self.app.testing = True
         # Reset database before each test
         library.connection.execute("DELETE FROM books")
@@ -28,7 +28,7 @@ class TestLibraryIntegration(unittest.TestCase):
                                     "author": "Test Author", 
                                     "isbn": "9876543210"})
         data = json.loads(response.data)
-        self.assertEqual(response.status_code, 200)
+        self.assertEqual(response.status_code, 201)
         self.assertEqual(data["title"], "Integration Test Book")
         self.assertEqual(data["author"], "Test Author")
         self.assertEqual(data["isbn"], "9876543210")

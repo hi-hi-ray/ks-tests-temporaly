@@ -10,11 +10,11 @@ System Tests avaliam o sistema como um todo, verificando sua conformidade com os
 
 import unittest
 import json
-from library import app, library
+from library import api, library
 
 class TestSystem(unittest.TestCase):
     def setUp(self):
-        self.app = app.test_client()
+        self.app = api.test_client()
         self.app.testing = True
         # Reset database
         library.connection.execute("DELETE FROM books")
@@ -26,7 +26,7 @@ class TestSystem(unittest.TestCase):
                                     json={"title": "System Test Book", 
                                         "author": "System Author", 
                                         "isbn": "SYSTEM123"})
-        self.assertEqual(add_response.status_code, 200)
+        self.assertEqual(add_response.status_code, 201)
         
         # Retrieve the book
         get_response = self.app.get('/books/SYSTEM123')

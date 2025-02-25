@@ -29,7 +29,7 @@ def test_load_multiple_books():
     for i in range(0, 100, 10):
         isbn = f"LOAD{i:06d}"
         response = test_app.get(f'/books/{isbn}')
-        assert response.status_code == 201
+        assert response.status_code == 200
         data = json.loads(response.data)
         assert data["title"] == f"Load Test Book {i}"
 

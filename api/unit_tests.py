@@ -71,7 +71,7 @@ class TestLibraryAPI(unittest.TestCase):
             "isbn": "123456789"
         })
         
-        self.assertEqual(response.status_code, 200)
+        self.assertEqual(response.status_code, 201)
         self.assertIn("Test Book", response.get_data(as_text=True))
     
     @patch.object(library, 'get_book')

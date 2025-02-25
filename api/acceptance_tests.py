@@ -10,11 +10,11 @@ Acceptance Tests garantem que o software atende aos requisitos do usuário. Plan
 
 import unittest
 import json
-from library import app, library
+from library import api, library
 
 class TestAcceptance(unittest.TestCase):
     def setUp(self):
-        self.app = app.test_client()
+        self.app = api.test_client()
         self.app.testing = True
         library.connection.execute("DELETE FROM books")
         library.connection.commit()
@@ -26,7 +26,7 @@ class TestAcceptance(unittest.TestCase):
                                     "author": "Popular Author", 
                                     "isbn": "1122334455"})
         data = json.loads(response.data)
-        self.assertEqual(response.status_code, 200)
+        self.assertEqual(response.status_code, 201)
         self.assertEqual(data["title"], "New Release")
         
         # Verify the book is in the system

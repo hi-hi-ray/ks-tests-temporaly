@@ -10,11 +10,11 @@ Regression Tests garantem que novas alterações não quebrem funcionalidades ex
 
 import unittest
 import json
-from library import app
+from library import api
 
 class TestRegression(unittest.TestCase):
     def setUp(self):
-        self.app = app.test_client()
+        self.app = api.test_client()
         self.app.testing = True
         # Add a book that we'll use for regression testing
         self.app.post('/books', 
