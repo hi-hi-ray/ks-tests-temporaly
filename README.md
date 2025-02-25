@@ -11,7 +11,7 @@ python library.py
 Rodando os testes back:
 ```
 cd api
-python -m pip install flask bcrypt jwt
+python -m pip install pytest flask bcrypt jwt
 python test_runner.py
 ```
 
@@ -231,7 +231,7 @@ Garantem que o software atende aos requisitos do usuário.
 4. Executar com stakeholders.
 5. Validar fluxos completos de uso.
 
-### Component Tests (Testes de Componentes)
+### **Component Tests (Testes de Componentes)**
 Verificam o funcionamento isolado de componentes individuais da interface.
 
 #### Onde usar:
